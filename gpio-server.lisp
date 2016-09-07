@@ -7,6 +7,9 @@
 (defparameter *exported-pins* NIL
   "List of exported pins so they can be unexported at exit.")
 
+(defparameter *auto-unexport* T
+  "If set to NIL, prevents the server from unexporting the exported pins on exit.")
+
 (defun interpret (cmdline)
   (let* ((tokens (split-sequence #\Space
                                  (string-trim " " cmdline)
@@ -47,4 +50,5 @@
           :unless (eql result :quit)
           :do (format t "~A~%" result)
           :while (not (eql result :quit)))
-    (mapc #'gpio-unexport *exported-pins*)))
+    (when *auto-unexport*
+      (mapc #'gpio-unexport *exported-pins*))))
