@@ -4,7 +4,7 @@
 
 ;;; "gpio-server" goes here. Hacks and glory await!
 
-(defparameter *exported-pins* nil
+(defparameter *exported-pins* NIL
   "List of exported pins so they can be unexported at exit.")
 
 (defun interpret (cmdline)
@@ -17,7 +17,10 @@
        (gpio-export (second tokens))
        :exported)
       ((u unex unexport)
-       (setf *exported-pins* (remove (second tokens) *exported-pins* :test #'string-equal))
+       (setf *exported-pins*
+             (remove (second tokens)
+                     *exported-pins*
+                     :test #'string-equal))
        (gpio-unexport (second tokens))
        :unexported)
       ((d dir direction)
