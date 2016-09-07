@@ -1,0 +1,51 @@
+* About gpio-server
+  This is a very simple control program for the Raspberry Pi's GPIO
+  ports, which reads commands from *standard-input* and outputs
+  messages to *standard-output*.  I originally made it to interact
+  with the LEDs and buttons hooked to my Pi from other computers.
+
+  Tested with SBCL 1.3.9 on Raspbian Jessie, on a Pi2.
+
+  *NOTE:* The sysfs interface, as configured in Raspbian Jessie, uses
+  BCM numbering.
+
+* Requirements
+  GPIO-SERVER uses my RPI-GPIO library, available at https://github.com/raydeejay/rpi-gpio
+
+* Why?
+  Because I needed something like this, and I went for the most
+  straighforward approach.
+
+* Usage
+  /Add instructions here about xinetd setup./
+
+  You can also use it from the command line.
+
+  The included /sample.script/ shows an example of a session.
+
+* Commands
+** EXPORT
+   EX|EXPORT <pin>
+
+** UNEXPORT
+   UNEX|EXPORT <pin>
+
+** DIRECTION
+   DIR|DIRECTION <pin> <IN|OUT>
+
+** WRITE
+   W|WR|WRITE <pin> <0|1>
+
+** READ
+   R|READ <pin>
+
+** DELAY
+   Z|DELAY <milliseconds>
+
+** QUIT
+   Q|QUIT
+
+* To do
+  - Unimportant things like check for errors... :D
+  - Additional commands, like looping, waiting for a button press...
+  - Tests?
