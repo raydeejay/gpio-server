@@ -26,6 +26,12 @@
                      :test #'string-equal))
        (gpio-unexport (second tokens))
        :unexported)
+      (auto
+       (setf *auto-unexport* T)
+       :auto)
+      (noauto
+       (setf *auto-unexport* NIL)
+       :noauto)
       ((d dir direction)
        (gpio-direction (second tokens) (third tokens))
        :direction)
